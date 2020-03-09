@@ -1,0 +1,39 @@
+@font-face {
+  src: url("./fonts/RobotoSlab-Regular.ttf");
+  font-family: "Roboto Slab";
+  font-weight: normal;
+}
+
+@font-face {
+  src: url("./fonts/RobotoSlab-Bold.ttf");
+  font-family: "Roboto Slab";
+  font-weight: bold;
+}
+
+@font-face {
+  src: url("./fonts/Lato-Regular.ttf");
+  font-family: "Lato";
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  src: url("./fonts/Lato-Italic.ttf");
+  font-family: "Lato";
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  src: url("./fonts/Lato-Bold.ttf");
+  font-family: "Lato";
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  src: url("./fonts/Lato-BoldItalic.ttf");
+  font-family: "Lato";
+  font-weight: bold;
+  font-style: italic;
+}

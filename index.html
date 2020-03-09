@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Guide to Code Pattern and Project Organization</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="This is a guide intended to provide information about code pattern">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link media="screen" rel="stylesheet" href="./_fonts.css">
+  <style type="text/css">
+    * { outline: none; }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: "Lato"; }
+    article { margin: 0 auto; }
+    h1, h2, h3 { font-family: "Roboto Slab"; font-weight: bold; color: rgba(0, 0, 0, 0.7); margin: 0; padding: 0; }
+    h1 { font-size: 1.5em; border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
+    h2 { font-size: 1.3em; border-bottom: 1px solid rgba(0, 0, 0, 0.10); }
+    p { font-size: 1em; font-family: "Lato"; font-weight: normal; line-height: 1.4; color: rgba(0, 0, 0, 0.7); margin: 0; padding: 0; }
+    img { max-width: 55%; }
+    small { font-family: "Lato"; font-weight: normal; color: rgba(0, 0, 0, 0.7); }
+    code { font-size: 1.1em; background: rgba(0, 0, 0, 0.1); padding: 2px 5px; font-family: monospace; color: rgba(0, 0, 0, 0.7); }
+    ol { list-style: decimal; color: rgba(0, 0, 0, 0.7); margin: 0; padding: 0 20px; }
+    ul { color: rgba(0, 0, 0, 0.7); margin: 0; padding: 0 20px; }
+    li { margin: 15px 0; }
+    a { font-size: 1em; font-family: "Lato"; font-weight: normal; color: #00538a; text-decoration: none; }
+    blockquote { box-sizing: border-box; margin: 0; padding: 10px; background: rgba(0, 0, 0, 0.05); border-left: 3px solid rgba(0, 0, 0, 0.15); display: grid; grid-template-rows: 1fr; row-gap: 5px; }
+    blockquote p { color: rgba(0, 0, 0, 0.7); font-size: 0.9em;  }
+    details { font-size: 1em; color: rgba(0, 0, 0, 0.7); }
+    summary { -moz-user-select: none; -webkit-user-select: none; cursor: pointer; }
+
+    @media (max-width: 425px) {
+      article {
+        box-sizing: border-box;
+        padding: 20px;
+        display: grid;
+        grid-row-gap: 20px;
+        grid-template-columns: 1fr;
+      }
+
+      header, nav, section {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      header, section { grid-row-gap: 10px; }
+      nav { row-gap: 5px; }
+
+      img { max-width: 100%; }
+    }
+
+    @media (min-width: 426px) {
+      article {
+        max-width: 70%;
+        padding: 25px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+      }
+
+      header, nav, section {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      header, section { grid-row-gap: 10px; }
+      nav { row-gap: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <article>
+
+    <!-- Document header -->
+    <header>
+      <h1>Guide to Code Pattern and Project Organization</h1>
+      <p>A guide to coding pattern and project organization for React and optionally NextJS</p>
+      <nav>
+        <p>Index of contents</p>
+        <ol>
+          <li><a href="#introduction" rel="nofollow">Introduction</a></li>
+          <li>
+            <a href="#project-structure" rel="nofollow">Project structure</a>
+            <ol>
+              <li><a href="#using-nextjs" rel="nofollow">Using NextJS</a></li>
+            </ol>
+          </li>
+          <li><a href="#page-file" rel="nofollow">Page file</a></li>
+          <li><a href="#component-file" rel="nofollow">Component file</a></li>
+          <li><a href="#introduction-to-services" rel="nofollow">Introduction to services</a></li>
+          <li>
+            <a href="#service-file" rel="nofollow">Service file</a>
+            <ol>
+              <li><a href="#using-typescript" rel="nofollow">Using TypeScript</a></li>
+              <li><a href="#models-folder" rel="nofollow">The Models folder</a></li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+    </header>
+
+    <!-- Introduction section -->
+    <section>
+      <h2 id="introduction">Introduction</h2>
+      <blockquote>
+        <p>This guide is intended to show one possible way to organize your React Project and is not mandatory to follow all the rules presented here. Feel free to extend it and adjust to your demand.</p>
+      </blockquote>
+      <p>Creating and developing small React projects is indeed something easy and fast just as deploying an application and dismisses the need of an entire set of rules and patterns, but when it comes to scale up you are certainly going to look for a way to keep everything as much organized as possible.</p>
+      <p>The advantage of keeping your project organized when scaling up is that you can <b>start a production line and produce high quality code in less time.</b></p>
+    </section>
+
+    <!-- Project structure section -->
+    <section>
+      <h2 id="project-structure">Project structure</h2>
+      <p>A good way to organize your source code in a project is to use the <code>src</code> folder within subfolders named using either <code>content folder</code> or <code>function folder</code> naming patterns.</p>
+      <blockquote>
+        <p><b>Content folder</b> is naming the folders inside of <code>src</code> after the name of the content inside of it.</p>
+        <img id="folder_content_folder" alt="Content Folder structure">
+      </blockquote>
+      <blockquote>
+        <p><b>Function folder</b> is naming the folders inside of <code>src</code> after the function of the content inside of it.</p>
+        <img id="folder_function_folder" alt="Function Folder structure">
+      </blockquote>
+      <p>The <b>disadvantage of content folder</b> is that you have less shareable code since you are going to want to fit everything the content (component, page, etc) needs inside that folder. It can easily lead to code duplication and eventually increases the size of your source code and the need of a tree shaking process when deploying your application. That being said, it is highly recommended that you choose <b>function folder</b>, though it is entirely up to you.</p>
+      
+      <!-- Using NextJS subsection -->
+      <section>
+        <h3 id="using-nextjs">Using NextJS</h3>
+        <p>When using NextJS, it is mandatory that you have a <b>pages folder</b> in your application's root directory. It immediately disallows the use of <b>content folder</b> pattern. That being said, the other possible folder structure is <b>function folder</b> with <code>pages</code> outside of <code>src</code>.</p>
+        <blockquote>
+          <p>You can keep the pages folder inside of src and make symbolic link outside in a parent folder (root directory), though it is not recommended.</p>
+        </blockquote>
+        <p>It is also important to make every single js file inside of <b>pages</b> use <code>export default</code> so you can build your NextJS application without any errors.</p>
+      </section>
+    </section>
+
+    <!-- Page file section -->
+    <section>
+      <h2 id="page-file">Page file</h2>
+      <p>The page file is a usually not reusable piece of code (component) that users are going to see and contains reusable components like buttons, menus, etc.</p>
+      <p>The structure is defined bellow.</p>
+      <details>
+        <summary>Click me to expand</summary>
+        <img id="code_page_file" alt="Page file code example">
+      </details>
+      <h3>Rules for the page file</h3>
+      <ul title="Page file rules">
+        <li>Import React is always the first line</li>
+        <li>Default imports should be the second block imports</li>
+        <li>Named imports should be the third block of imports</li>
+        <li>If you are using Styled Components then the third block is going to be named imports to your styled components' code</li>
+        <li>If you are using NextJS then declare a router bellow the component signature line (the line that declares the component), so that it is the first line inside the function component code</li>
+        <li>Always keep your page's states as the first block of code</li>
+        <li>Use two initialization methods being one for synchronous and the other for asynchronous routines and declare them bellow your states' block</li>
+        <li>Always declare your callbacks (Functions being called inside of a component event, E.G. onClick of a button component) with the callback name pattern</li>
+        <li>Writing ternary or calling .map methods inside of JSX is forbidden</li>
+        <li>Always create render methods handles all the logic and that returns a JSX</li>
+      </ul>
+      <blockquote>
+        <p>The <b>callback name</b> pattern is way of naming your methods with the prefix <code>on</code> followed by the <code>event name</code>. E.G. <code>onDragAndDrop</code></p>
+      </blockquote>
+    </section>
+
+    <!-- Component file section -->
+    <section>
+      <h2 id="component-file">Component file</h2>
+      <p>The component file is a reusable piece of code that is going to be imported and used inside of pages and other non reusable pieces of code.</p>
+      <p>The structure is defined bellow</p>
+      <details>
+        <summary>Click me to expand</summary>
+        <img id="code_component_file" alt="Component file code example">
+      </details>
+      <h3>Rules for the component file</h3>
+      <ul title="Component file rules">
+        <li>Import React is always the first line</li>
+        <li>Default imports should be the second block imports</li>
+        <li>Named imports should be the third block of imports</li>
+        <li>If you are using Styled Components then the third block is going to be named imports to your styled components' code</li>
+        <li>If you are using NextJS then declare a router bellow the component signature line (the line that declares the component), so that it is the first line inside the function component code</li>
+        <li>Always keep your component's states as the first block of code</li>
+        <li>Use two initialization methods being one for synchronous and the other for asynchronous routines and declare them bellow your states' block</li>
+        <li>Always declare your callbacks (Functions being called inside of a component event, E.G. onClick of a button component) with the callback name pattern</li>
+        <li>Writing ternary or calling .map methods inside of JSX is forbidden</li>
+        <li>Always create render methods that handles all the logic and returns a JSX</li>
+      </ul>
+    </section>
+
+    <!-- Introduction to services section -->
+    <section>
+      <h2 id="introduction-to-services">Introduction to services</h2>
+      <p>A service is essentially an interface with an API, that means it is going to comunicate with the API and get the data formatted the way your application needs. <b>It is the service's responsability to format the data if the API is not sending it ready to be used</b>.</p>
+      <blockquote>
+        <p>A component named <code>ListComponent</code> needs a list of names provided by a server.</p>
+        <p>The component is going to import a service named <code>NameService</code> and call one of its methods to retrieve the data from the server.</p>
+        <p>The service <code>NameService</code> is going to perform <code>HTTP</code> requests to the API and once it gets a response, it will format and deliver the data.</p>
+        <p>The component <code>ListComponent</code> then will consume the data the <code>NameService</code> delivered.</p>
+      </blockquote>
+      <p>Services are also responsible for reading and writing data from the browser such as <code>geolocation</code> or <code>local storage</code>.</p>
+    </section>
+
+    <!-- Service file section -->
+    <section>
+      <h2 id="service-file">Service file</h2>
+      <p>The service file is a reusable piece of code containing a class with methods responsible for data delivery.</p>
+      <p>The structure is defined bellow</p>
+      <details>
+        <summary>Click me to expand</summary>
+        <img id="code_service_file" alt="Service file code example">
+      </details>
+      <h3>Rules for the service file</h3>
+      <ul title="Service file rules">
+        <li>The service file must never contain JSX</li>
+        <li>The service file must never import/declare/return function components</li>
+        <li>A service's method must always be static. If an instance of the class is needed to keep track of local variable and states then create a method returning a <code>closure</code></li>
+      </ul>
+      <blockquote>
+        <p>A <code>closure</code> is a method with its own scope and context. It is basically a method that creates variables and returns a reference of a second method that uses the previous variables.</p>
+        <img id="code_closure_file" alt="Closure code example">
+      </blockquote>
+
+      <!-- Using TypeScript subsection-->
+      <section>
+        <h3 id="using-typescript">Using TypeScript</h3>
+        <p>If you have installed TypeScript in your project, then you're likely going to use strong type notation. In that case, a <code>models</code> folder inside of <code>src</code> is suggested to maintain your data models. A service using TypeScript is a regular service that imports models and return strong typed values.</p>
+        <p>The structure is defined bellow</p>
+        <details>
+          <summary>Click me to expand</summary>
+          <img id="code_service_file_typescript" alt="Service file with TypeScript code example">
+        </details>
+      </section>
+
+      <!-- The models folder subsection -->
+      <section>
+        <h3 id="models-folder">The models folder</h3>
+        <p>When using TypeScript, you are able to define data models so that the services can make use of those models for assertion.</p>
+        <p>You can have a single file or multiple files for interfaces. If you choose multiple files then each model folder must contain an index file with a default export with your interface content.</p>
+        <blockquote>
+          <p>A <b>Single file folder</b> contains typescript files named after its own content (interface, data model).</p>
+          <img id="folder_model_regular" alt="Single model folder">
+        </blockquote>
+        <blockquote>
+          <p>A <b>Multiple files folder</b> contains folders named after its own content (interface, data model) with typescript files inside. Each folder must contain an index file centering everything related to that model.</p>
+          <img id="folder_model_multiple" alt="Multiple models foder">
+        </blockquote>
+      </section>
+    </section>
+  </article>
+
+  <script type="text/javascript">
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('sw.js')
+        .catch((error) => console.warn('Failed to install service worker', error));
+    }
+
+    /* Image Lazy Loading */
+    (function() {
+      const imageList = [
+        './images/code_closure_file.png',
+        './images/code_component_file.png',
+        './images/code_page_file.png',
+        './images/code_service_file_typescript.png',
+        './images/code_service_file.png',
+        './images/folder_content_folder.png',
+        './images/folder_function_folder.png',
+        './images/folder_model_multiple.png',
+        './images/folder_model_regular.png'
+      ];
+
+      // const promiseArray = [];
+
+      // for (let i = 0; i < imageList.length; i++) promiseArray.push(fetch(imageList[i]));
+      for (let i = 0; i < imageList.length; i++) {
+        fetch(imageList[i])
+          .then(response => {
+            const fileName = 
+              response.url
+                .replace(/^.+\/images\//gi, "")
+                .replace(/\.\w{3}/gi, "");
+            const imageEl = document.querySelector(`img#${fileName}`);
+            if (imageEl) imageEl.setAttribute("src", response.url);
+          })
+          .catch(error => console.warn("Failed to fetch image", imageList[i], error))
+      }
+
+      // Promise.all(promiseArray)
+      //   .then(values => {
+      //     for (let j = 0; j < values.length; j++) {
+            
+      //     }
+      //   })
+      })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /fonts/
+
+User-agent: *
+Disallow: /images/
+
+User-agent: *
+Disallow: /.gitignore
+
+User-agent: *
+Disallow: /sw.js
