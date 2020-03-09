@@ -7,3 +7,6 @@ Last Edited Time: Mar 09, 2020 2:48 AM
 Status: Done ✔️
 
 #### Simple documentation for a structure and project organization for a ReactJS project
+
+#### [Check it out!](https://coding-guide-pattern.netlify.com/)
+
